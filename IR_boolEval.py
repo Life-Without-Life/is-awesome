@@ -1,11 +1,8 @@
-#get set of documents with the word
-def get_set(word):
-    return set(inv_index[word]) if word in inv_index else set()
 #evaluate the boolean query by splitting by OR and handling NOt and AND
 def bool_eval(query):
     query_words = query.split(' ')
     query_words = [i for i in query_words if i in keywords]
-    docs = [get_set(w) for w in query_words]
+    docs = [set(inv_index[w]) for w in query_words]
     result = list(set.intersection(*docs))
     print("Matched Documents: ")
     for i in range(len(result)):
