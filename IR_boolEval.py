@@ -17,7 +17,7 @@ documents = open("documents.txt", encoding='utf-8-sig').read().split('\n\n')
 inv_index = {key:[] for key in keywords}
 for i in range(len(documents)):
     for w in keywords:
-        if any(x in documents[i] for x in [' ' + w, w + ' ', w + 's', w + "'"]) and i not in inv_index[w]:
+        if any(x in documents[i] for x in [w, ' ' + w, w + ' ', w + 's', w + "'"]) and i not in inv_index[w]:
                 inv_index[w].append(i)
 query = 'machine learning model'
 bool_eval(query)
