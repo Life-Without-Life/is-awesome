@@ -63,3 +63,19 @@ text = 'Hello There!'
 hash = sha512(text.encode('utf-8'))
 print(text)
 print(hash.hexdigest())
+
+#RSA in-built
+from Crypto.PublicKey import RSA
+from Crypto.Cipher import PKCS1_OAEP
+
+keypair = RSA.generate(2048)
+public = keypair.publickey().exportKey()
+private = keypair.exportKey()
+
+pt = 'hello there'
+cipher = PKCS1_OAEP.new(RSA.import_key(public))
+ct = cipher.encrypt(pt.encode())
+print(ct)
+ciph = PKCS1_OAEP.new(RSA.import_key(private))
+et = ciph.decrypt(ct)
+print(et.decode())
